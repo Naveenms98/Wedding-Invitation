@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom, #fff7e6, #fde2e4);
+  color: #333;
+  text-align: center;
+}
+
+section {
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.date {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.details h2 {
+  margin-bottom: 20px;
+}
+
+.footer {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
