@@ -1,28 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wedding Invitation</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <section class="hero">
-      <h1>Naveen ❤️ Bride</h1>
-      <p>We invite you to celebrate our wedding</p>
-      <p class="date">May 2026</p>
-    </section>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation | Gopika & Naveen</title>
 
-    <section class="details">
-      <h2>Wedding Details</h2>
-      <p>Venue: Temple Name, City</p>
-      <p>Time: 10:30 AM</p>
-    </section>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <section class="footer">
-      <p>With love & blessings</p>
-    </section>
+<!-- 🔝 HEADER -->
+<header class="header">
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#profile">Profile</a>
+    <a href="#wedding">Wedding</a>
+    <a href="#reception">Reception</a>
+  </nav>
+</header>
 
-    <script src="script.js"></script>
-  </body>
+<!-- 🌌 BACKGROUND IMAGE LAYERS -->
+<div class="bg-layer">
+  <img src="assets/images/couple-standing.png" id="img-couple">
+  <img src="assets/images/wedding-couple.png" id="img-wedding">
+  <img src="assets/images/party-dance.png" id="img-party">
+</div>
+
+<!-- 🌙 HOME -->
+<section class="hero" id="home">
+  <p class="invite-text">
+    Cordially invite your esteemed presence with family<br>
+    on the auspicious occasion of our wedding
+  </p>
+  <h1 class="name">Gopika</h1>
+  <p class="with">with</p>
+  <h1 class="name">Naveen</h1>
+</section>
+
+<!-- ❤️ PROFILE -->
+<section class="profile" id="profile">
+  <h2>Our Story</h2>
+  <p>
+    Two hearts. One destiny.<br>
+    A journey of love, laughter, and forever.
+  </p>
+</section>
+
+<!-- 🕉️ WEDDING -->
+<section class="event" id="wedding">
+  <h2>Wedding Ceremony</h2>
+
+  <div class="event-card">
+    <p><strong>Sunday, 3rd May 2026</strong></p>
+    <p>Muhurtham: 10:30 AM – 11:00 AM</p>
+    <p>Sakthi Auditorium, Alappuzha</p>
+  </div>
+</section>
+
+<!-- 🎉 RECEPTION -->
+<section class="event" id="reception">
+  <h2>Reception / After Party</h2>
+
+  <div class="event-card">
+    <p><strong>Monday, 4th May 2026</strong></p>
+    <p>6:00 PM – 9:00 PM</p>
+    <p>Thrissur</p>
+  </div>
+</section>
+
+<section class="footer">
+  <p>With love & blessings</p>
+</section>
+
+<script src="script.js"></script>
+</body>
 </html>

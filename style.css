@@ -2,38 +2,110 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: linear-gradient(to bottom, #fff7e6, #fde2e4);
-  color: #333;
+  font-family: 'Playfair Display', serif;
+  background: radial-gradient(circle at top, #2b2f6b, #0b0e2b);
+  color: #fff;
   text-align: center;
 }
 
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 12, 40, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+
+.header nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 15px;
+}
+
+.header a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+/* BACKGROUND IMAGE LAYER */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-layer img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  max-width: 80%;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 1.2s ease, transform 1.2s ease, clip-path 1.2s ease;
+}
+
+/* SECTIONS */
 section {
-  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
+  padding: 100px 20px;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
+.hero {
+  min-height: 100vh;
+  padding-top: 150px;
 }
 
-.hero p {
-  margin-top: 10px;
+.invite-text {
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+.name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+}
+
+.with {
   font-size: 1.2rem;
 }
 
-.date {
-  font-weight: bold;
-  margin-top: 15px;
-}
-
-.details h2 {
+.profile h2,
+.event h2 {
   margin-bottom: 20px;
 }
 
+.event-card {
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 30px;
+  max-width: 420px;
+  margin: auto;
+  border-radius: 20px;
+}
+
 .footer {
-  font-size: 0.9rem;
   opacity: 0.8;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .name {
+    font-size: 2.6rem;
+  }
+
+  .bg-layer img {
+    max-width: 95%;
+  }
 }
