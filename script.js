@@ -280,6 +280,7 @@ function openCurtain(callback) {
 ══════════════════════════════════════════════════════ */
 function doEnter(withMusic) {
   var enterEl = document.getElementById('enter');
+document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
 
   // 1. Fade out enter screen
   enterEl.classList.add('out');
