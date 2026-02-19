@@ -291,6 +291,7 @@ function openCurtain(callback) {
 function doEnter(withMusic) {
   var enterEl = document.getElementById('enter');
   enterEl.classList.add('out');
+    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
 
   setTimeout(function () {
     enterEl.style.display = 'none';
