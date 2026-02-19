@@ -701,3 +701,65 @@ footer { background:#080501; padding:48px 7% 28px; text-align:center; width:100%
   .timeline        { padding-left: 4px; }
   .tl-item         { gap: 0 10px; }
 }
+
+
+/* ═══════════════════════════════════════════════════════
+   CARD ACTION BUTTONS  (Maps + Calendar)
+   Shown on all devices (mobile, tablet, laptop).
+   Layout: two buttons side by side, wrap on small screens.
+═══════════════════════════════════════════════════════ */
+
+/* Wrapper that sits the two buttons side-by-side */
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+/* The existing .map-btn margin-top is overridden inside .card-actions */
+.card-actions .map-btn {
+  margin-top: 0;
+  /* Make each button take equal width when they share a row */
+  flex: 1 1 auto;
+  min-width: 140px;
+  max-width: 200px;
+  justify-content: center;
+  cursor: pointer;
+  /* reset <button> defaults */
+  background: transparent;
+  font-family: inherit;
+}
+
+/* Dark-card variant for Reception (dark background) */
+.map-btn--dark {
+  border-color: rgba(212, 175, 55, 0.55) !important;
+  color: var(--gold-lt) !important;
+}
+.map-btn--dark::before {
+  background: rgba(212, 175, 55, 0.22) !important;
+}
+.map-btn--dark:hover {
+  color: var(--gold) !important;
+}
+.map-btn--dark:hover::before {
+  transform: scaleX(1);
+}
+
+/* .add-cal-btn is a <button> — reset extra browser defaults */
+.add-cal-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Responsive: stack vertically on very small screens */
+@media (max-width: 360px) {
+  .card-actions .map-btn {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+}

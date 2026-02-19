@@ -14,8 +14,6 @@
 
   <!-- ══════════════════════════════════════
        GUEST BANNER  (?to=Name in URL)
-       Shown after entering. Banner says
-       "Gopika & Naveen invite <Name>"
   ══════════════════════════════════════ -->
   <div id="guest-banner" class="guest-banner" aria-live="polite" style="display:none">
     <div class="guest-banner__inner">
@@ -33,7 +31,7 @@
        ENTER SCREEN
   ══════════════════════════════════════ -->
   <div id="enter" role="dialog" aria-modal="true" aria-label="Enter the invitation">
-    <div id="epw" aria-hidden="true"></div><!-- petal rain injected by JS -->
+    <div id="epw" aria-hidden="true"></div>
 
     <p class="es-badge">✦ &nbsp; A Wedding Invitation &nbsp; ✦</p>
 
@@ -43,7 +41,6 @@
       Naveen
     </h1>
 
-    <!-- Personalised line: "To our dearest, <Name>" — shown only when ?to= present -->
     <p id="es-guest-line" class="es-guest-line" style="display:none"></p>
 
     <p class="es-date">03 &nbsp;·&nbsp; May &nbsp;·&nbsp; 2026</p>
@@ -51,9 +48,9 @@
     <div class="es-rule" aria-hidden="true"></div>
 
     <button class="es-btn" id="btn-music">
-      <span class="es-btn-text">♪ &nbsp; Enter with Music</span>
+      <span class="es-btn-text">♪ &nbsp;Let the Story Begin</span>
     </button>
-    <button class="es-skip" id="btn-silent">Continue silently →</button>
+    <!-- <button class="es-skip" id="btn-silent">Continue silently →</button> -->
   </div>
 
   <!-- ══════════════════════════════════════
@@ -179,7 +176,7 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       OUR STORY
+       OUR STORY  (your updated content kept exactly)
   ══════════════════════════════════════ -->
   <section id="story">
     <span class="sec-label rv">A Love Story</span>
@@ -193,75 +190,73 @@
       A journey of love, laughter, and forever.
     </blockquote>
 
-    <!-- Mobile timeline: simple left-rail list, no grid -->
     <div class="timeline">
 
-  <div class="tl-item rv">
-    <div class="tl-content tl-left">
-      <p class="tl-year">Where It Began</p>
-      <p class="tl-name">From Strangers to Smiles</p>
-      <p class="tl-text">
-        In the quiet corridors of college, a senior and a junior crossed paths —
-        two strangers unaware that fate had already begun its gentle work.
-      </p>
+      <div class="tl-item rv">
+        <div class="tl-content tl-left">
+          <p class="tl-year">Where It Began</p>
+          <p class="tl-name">From Strangers to Smiles</p>
+          <p class="tl-text">
+            In the quiet corridors of college, a senior and a junior crossed paths —
+            two strangers unaware that fate had already begun its gentle work.
+          </p>
+        </div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content tl-right tl-empty" aria-hidden="true"></div>
+      </div>
+
+      <div class="tl-item rv d1">
+        <div class="tl-content tl-left tl-empty" aria-hidden="true"></div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content tl-right">
+          <p class="tl-year">Growing Closer</p>
+          <p class="tl-name">Friendship Found Its Way</p>
+          <p class="tl-text">
+            Conversations turned comfortable, laughter came easily —
+            and friendship quietly bloomed between a girl with dreams
+            and a boy with purpose.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-item rv d1">
+        <div class="tl-content tl-left">
+          <p class="tl-year">When Hearts Spoke</p>
+          <p class="tl-name">Love Took Root</p>
+          <p class="tl-text">
+            Somewhere between shared dreams and unspoken promises,
+            friendship transformed into love — steady, certain, and deeply true.
+          </p>
+        </div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content tl-right tl-empty" aria-hidden="true"></div>
+      </div>
+
+      <div class="tl-item rv d2">
+        <div class="tl-content tl-left tl-empty" aria-hidden="true"></div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content tl-right">
+          <p class="tl-year">17 · August · 2025</p>
+          <p class="tl-name">A Promise Made</p>
+          <p class="tl-text">
+            On this beautiful day, Naveen and Gopika chose forever —
+            sealing their love in an engagement that marked the beginning
+            of a lifetime together.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-item rv d1">
+        <div class="tl-content tl-left">
+          <p class="tl-year">03 · May · 2026</p>
+          <p class="tl-name">Forever Begins</p>
+          <p class="tl-text">With family, blessings, and a love tested by time — they begin their forever. You are part of this beautiful story.</p>
+        </div>
+        <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+        <div class="tl-content tl-right tl-empty" aria-hidden="true"></div>
+      </div>
+
     </div>
-    <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    <div class="tl-content tl-right tl-empty" aria-hidden="true"></div>
-  </div>
-
-  <div class="tl-item rv d1">
-    <div class="tl-content tl-left tl-empty" aria-hidden="true"></div>
-    <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    <div class="tl-content tl-right">
-      <p class="tl-year">Growing Closer</p>
-      <p class="tl-name">Friendship Found Its Way</p>
-      <p class="tl-text">
-        Conversations turned comfortable, laughter came easily —
-        and friendship quietly bloomed between a girl with dreams
-        and a boy with purpose.
-      </p>
-    </div>
-  </div>
-
-  <div class="tl-item rv d1">
-    <div class="tl-content tl-left">
-      <p class="tl-year">When Hearts Spoke</p>
-      <p class="tl-name">Love Took Root</p>
-      <p class="tl-text">
-        Somewhere between shared dreams and unspoken promises,
-        friendship transformed into love — steady, certain, and deeply true.
-      </p>
-    </div>
-    <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    <div class="tl-content tl-right tl-empty" aria-hidden="true"></div>
-  </div>
-
-  <div class="tl-item rv d2">
-    <div class="tl-content tl-left tl-empty" aria-hidden="true"></div>
-    <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    <div class="tl-content tl-right">
-      <p class="tl-year">17 · August · 2025</p>
-      <p class="tl-name">A Promise Made</p>
-      <p class="tl-text">
-        On this beautiful day, Naveen and Gopika chose forever —
-        sealing their love in an engagement that marked the beginning
-        of a lifetime together.
-      </p>
-    </div>
-  </div>
-
-   <div class="tl-item rv d1">
-    <div class="tl-content tl-left">
-       <p class="tl-year">03 · May · 2026</p> <p class="tl-name">Forever Begins</p> <p class="tl-text">With family, blessings, and a love tested by time — they begin their forever. You are part of this beautiful story.</p>
-    </div>
-    <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
-    <div class="tl-content tl-right tl-empty" aria-hidden="true"></div>
-  </div>
-
-  
-
-</div>
-
   </section>
 
   <!-- ══════════════════════════════════════
@@ -291,20 +286,21 @@
         <span class="ev-lbl">Venue</span>
         <strong>Sakthi Auditorium, Alappuzha</strong>
       </div>
-      <a
-  href="https://maps.app.goo.gl/mQxAjnpHMUaLRwsr9?g_st=aw"
-  target="_blank" rel="noopener noreferrer"
-  class="map-btn"
->
-  <span class="map-btn-inner">
-    📍 View on Maps
-  </span>
-</a>
 
-<button class="map-btn add-cal-btn" data-event="wedding">
-  <span class="map-btn-inner">📅 Add to Calendar</span>
-</button>
+      <!-- Action buttons: Maps + Calendar (shown on mobile/laptop, hidden on desktop large) -->
+      <div class="card-actions">
+        <a
+          href="https://maps.app.goo.gl/mQxAjnpHMUaLRwsr9?g_st=aw"
+          target="_blank" rel="noopener noreferrer"
+          class="map-btn"
+        >
+          <span class="map-btn-inner">📍 View on Maps</span>
+        </a>
 
+        <button class="map-btn add-cal-btn" data-event="wedding" aria-label="Add wedding to calendar">
+          <span class="map-btn-inner">📅 Add to Calendar</span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -336,19 +332,21 @@
         <span class="rec-sub">Venue</span>
         <strong>Majestic Ceremonials Convention Centre, Thriprayar</strong><br/>
       </div>
-      <a
-  href="https://maps.app.goo.gl/LXArtDpkxjfRXGfc7?g_st=aw"
-  target="_blank" rel="noopener noreferrer"
-  class="map-btn"
->
-  <span class="map-btn-inner">
-    📍 View on Maps
-  </span>
-</a>
 
-<button class="map-btn add-cal-btn" data-event="reception">
-  <span class="map-btn-inner">📅 Add to Calendar</span>
-</button>
+      <!-- Action buttons: Maps + Calendar -->
+      <div class="card-actions card-actions--dark">
+        <a
+          href="https://maps.app.goo.gl/LXArtDpkxjfRXGfc7?g_st=aw"
+          target="_blank" rel="noopener noreferrer"
+          class="map-btn map-btn--dark"
+        >
+          <span class="map-btn-inner">📍 View on Maps</span>
+        </a>
+
+        <button class="map-btn map-btn--dark add-cal-btn" data-event="reception" aria-label="Add reception to calendar">
+          <span class="map-btn-inner">📅 Add to Calendar</span>
+        </button>
+      </div>
 
       <p class="rec-footer-note">Join us for an evening of joy,<br/>music, and heartfelt celebrations.</p>
     </div>
@@ -369,7 +367,7 @@
   </footer>
 
   <!-- ══════════════════════════════════════
-       MUSIC BUTTON
+       MUSIC BUTTON  (auto-stops on hide/close)
   ══════════════════════════════════════ -->
   <button id="music-btn" aria-label="Toggle music">
     <svg id="icon-play" width="17" height="17" viewBox="0 0 24 24" fill="#1a0f06" aria-hidden="true">
