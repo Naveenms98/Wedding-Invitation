@@ -312,6 +312,7 @@ function doEnter(withMusic) {
 
 document.getElementById('btn-music').addEventListener('click',  function () { doEnter(true);  });
 // document.getElementById('btn-silent').addEventListener('click', function () { doEnter(false); });
+console.log("log")
 
 
 /* ══════════════════════════════════════════════════════
