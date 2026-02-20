@@ -296,6 +296,7 @@ function openCurtain(callback) {
 function doEnter() {
   var enterEl = document.getElementById('enter');
   enterEl.classList.add('out');
+document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
 
   // Start music immediately on the user gesture (before animations)
   startMusic();
@@ -426,15 +427,22 @@ window.addEventListener('scroll', function () {
    = 05:00–05:30 UTC.  Reception 18:00–21:00 IST = 12:30–15:30 UTC.
 ══════════════════════════════════════════════════════ */
 
-/* ── Device helpers ── */
+/* ── Device & browser helpers ── */
+function isSafari() {
+  // Safari's UA contains "Safari" but NOT "Chrome" or "CriOS" (Chrome on iOS)
+  var ua = navigator.userAgent;
+  return /Safari/.test(ua) && !/Chrome/.test(ua) && !/CriOS/.test(ua);
+}
 function isIOS() {
-  // iPadOS 13+ deliberately reports as "Macintosh" to get the desktop site,
-  // so the old /iPad/ UA check silently fails on modern iPads.
-  // Fix: also check for a Mac UA *with* touch support (only iPads do that).
+  // iPadOS 13+ reports as "Macintosh" — detect via maxTouchPoints as well.
   var ua         = navigator.userAgent;
   var legacyIOS  = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
   var modernIPad = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
   return legacyIOS || modernIPad;
+}
+function isIOSSafari() {
+  // True only when running in Safari on iOS/iPadOS — NOT Chrome/Firefox on iOS
+  return isIOS() && isSafari();
 }
 function isAndroid() {
   return /Android/.test(navigator.userAgent);
@@ -510,32 +518,44 @@ function addToCalendar(eventKey) {
   var ev = CAL_EVENTS[eventKey];
   if (!ev) return;
 
-  if (isIOS()) {
+  if (isIOSSafari()) {
     /*
-     * iOS / iPadOS — open Calendar app via data: URI
+     * Safari on iPhone / iPad  →  data: URI navigation
      * ─────────────────────────────────────────────────────
-     * Why NOT Blob + link.download:
-     *   Safari saves the file to the Files app silently —
-     *   the Calendar app never opens. Known Safari limitation.
+     * Safari is the only browser that correctly interprets
+     * a text/calendar data: URI by handing it to the native
+     * Calendar app and showing the "Add Event" sheet.
      *
-     * Why data: URI + window.location works:
-     *   Safari recognises the text/calendar MIME type and
-     *   hands it directly to the Calendar app, showing the
-     *   "Add Event" sheet immediately. No Files app, no
-     *   download dialog. Works on iPhone and iPad (including
-     *   iPadOS 13+ which is correctly detected above).
+     * Chrome on iOS/iPadOS blocks window.location = dataURI
+     * for security and just downloads the file to Files app
+     * instead, so we must NOT use this path for Chrome.
      */
     var icsContent  = buildICS(ev);
     var dataURI     = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
     window.location = dataURI;
 
+  } else if (isIOS()) {
+    /*
+     * Chrome / Firefox / other browsers on iPhone or iPad
+     * ─────────────────────────────────────────────────────
+     * These browsers block data: URI navigation.
+     * Best available option: open Google Calendar in a new
+     * tab. The user can add the event there, and if they
+     * have the Google Calendar app installed it will
+     * deep-link into it automatically.
+     *
+     * Note: if users specifically want native iOS Calendar
+     * they can open the page in Safari instead.
+     */
+    window.open(buildGoogleCalURL(ev), '_blank', 'noopener');
+
   } else {
     /*
-     * Android + Desktop — Google Calendar URL
+     * Android + Desktop
      * ─────────────────────────────────────────────────────
-     * Opens Google Calendar add-event page in a new tab.
-     * On Android Chrome, deep-links into the Calendar app
-     * automatically if Google Calendar is installed.
+     * Google Calendar URL works well everywhere else.
+     * On Android Chrome it deep-links into the Calendar app
+     * if Google Calendar is installed.
      */
     window.open(buildGoogleCalURL(ev), '_blank', 'noopener');
   }
