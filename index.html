@@ -48,9 +48,8 @@
     <div class="es-rule" aria-hidden="true"></div>
 
     <button class="es-btn" id="btn-music">
-      <span class="es-btn-text">♪ &nbsp;Let the Story Begin</span>
+      <span class="es-btn-text">♪ &nbsp; Enter the Invitation</span>
     </button>
-    <!-- <button class="es-skip" id="btn-silent">Continue silently →</button> -->
   </div>
 
   <!-- ══════════════════════════════════════
@@ -145,39 +144,51 @@
     <div class="profile-grid">
       <div class="profile-card rv">
         <div class="profile-avatar" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="36" r="18" fill="rgba(212,175,55,.28)"/>
-            <path d="M22 82c0-20 13-30 28-30s28 10 28 30" fill="rgba(212,175,55,.2)"/>
-            <path d="M32 28c-2-10 6-17 18-14 12-3 20 4 18 14" stroke="rgba(212,175,55,.42)" stroke-width="1.5" fill="none"/>
-            <path d="M38 14c4-4 12-5 12-5s8 1 12 5" stroke="rgba(212,175,55,.26)" stroke-width="1.2" fill="none"/>
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <defs>
+              <clipPath id="clip-gopika">
+                <circle cx="50" cy="50" r="50"/>
+              </clipPath>
+            </defs>
+            <!-- Gold ring border sits behind the image -->
+            <circle cx="50" cy="50" r="49" fill="none"
+                    stroke="rgba(212,175,55,.55)" stroke-width="1.5"/>
+            <!-- Photo fills the circle; swap src for your actual image path -->
+            <image
+              href="assets/images/Piku_BW.jpg"
+              x="0" y="0" width="100" height="100"
+              preserveAspectRatio="xMidYMid slice"
+              clip-path="url(#clip-gopika)"/>
           </svg>
         </div>
         <div class="profile-name">Gopika</div>
         <div class="profile-role">The Bride</div>
-<p class="profile-bio">
-  A heart full of grace and warmth, Gopika brings calm strength wherever she goes.
-  A civil engineer by profession and a dreamer at heart, she builds not just structures,
-  but a love grounded in care, patience, and quiet joy.
-</p>      </div>
+        <p class="profile-bio">A heart full of grace and laughter, Gopika brings warmth to every room she enters. A dreamer, a dancer, and a devoted soul — she is the poetry in this love story.</p>
+      </div>
 
       <div class="profile-sep rv d2" aria-hidden="true">♡</div>
 
       <div class="profile-card rv d2">
         <div class="profile-avatar" aria-hidden="true">
-          <svg viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="36" r="18" fill="rgba(212,175,55,.28)"/>
-            <path d="M22 82c0-20 13-30 28-30s28 10 28 30" fill="rgba(212,175,55,.2)"/>
-            <rect x="40" y="13" width="20" height="5" rx="2.5" fill="rgba(212,175,55,.34)"/>
-            <path d="M35 22c3-6 15-8 15-8s12 2 15 8" stroke="rgba(212,175,55,.26)" stroke-width="1.2" fill="none"/>
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <defs>
+              <clipPath id="clip-naveen">
+                <circle cx="50" cy="50" r="50"/>
+              </clipPath>
+            </defs>
+            <circle cx="50" cy="50" r="49" fill="none"
+                    stroke="rgba(212,175,55,.55)" stroke-width="1.5"/>
+            <image
+              href="assets/images/Naveen_BW.jpg"
+              x="0" y="0" width="100" height="100"
+              preserveAspectRatio="xMidYMid slice"
+              clip-path="url(#clip-naveen)"/>
           </svg>
         </div>
         <div class="profile-name">Naveen</div>
         <div class="profile-role">The Groom</div>
-<p class="profile-bio">
-  Steady, thoughtful, and endlessly kind — Naveen is the anchor in Gopika's world.
-  A software engineer with a curious mind and gentle soul, he brings balance,
-  trust, and the promise of a love that grows stronger with time.
-</p>      </div>
+        <p class="profile-bio">Steady, thoughtful, and endlessly kind — Naveen is the anchor in Gopika's world. With quiet strength and a generous heart, he is the promise that love keeps.</p>
+      </div>
     </div>
   </section>
 
@@ -375,7 +386,7 @@
   <!-- ══════════════════════════════════════
        MUSIC BUTTON  (auto-stops on hide/close)
   ══════════════════════════════════════ -->
-  <button id="music-btn" aria-label="Toggle music">
+  <button id="music-btn" aria-label="Pause music">
     <svg id="icon-play" width="17" height="17" viewBox="0 0 24 24" fill="#1a0f06" aria-hidden="true">
       <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
     </svg>

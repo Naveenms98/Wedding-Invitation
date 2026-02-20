@@ -387,17 +387,28 @@ section {
 .profile-avatar {
   width: 155px; height: 155px; border-radius: 50%;
   margin: 0 auto 18px; position: relative;
+  /* Background shows while image loads */
   background: linear-gradient(135deg,var(--blush),var(--blush-dk));
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden;   /* clips the photo to the circle */
 }
-.profile-avatar svg { width: 60px; opacity: .3; }
+/* Photo SVG fills the full circle */
+.profile-avatar svg {
+  width: 100%;
+  height: 100%;
+  opacity: 1;         /* override the old placeholder opacity */
+}
+/* Outer decorative gold rings — sit OUTSIDE the avatar div */
 .profile-avatar::before {
   content: ''; position: absolute; inset: -7px; border-radius: 50%;
   border: 1px solid rgba(212,175,55,.44);
+  /* Needs to escape the overflow:hidden clip */
+  z-index: 1; pointer-events: none;
 }
 .profile-avatar::after {
   content: ''; position: absolute; inset: -13px; border-radius: 50%;
   border: 1px dashed rgba(212,175,55,.18); animation: spinAv 36s linear infinite;
+  z-index: 1; pointer-events: none;
 }
 @keyframes spinAv { to { transform: rotate(360deg); } }
 .profile-name { font-family:var(--serif); font-style:italic; font-size:1.5rem; color:var(--char); margin-bottom:5px; }

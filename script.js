@@ -138,7 +138,7 @@ applyGuestName(GUEST_NAME);
 ══════════════════════════════════════════════════════ */
 var audio        = new Audio('assets/music/music.mp3');
 audio.loop       = true;
-audio.volume     = 0.55;
+audio.volume     = 1;
 var isPlaying    = false;
 // Track whether user deliberately paused (don't auto-resume then)
 var userPaused   = false;
@@ -271,8 +271,8 @@ function openCurtain(callback) {
 
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
-      cl.style.transition = 'transform 1.3s cubic-bezier(.77,0,.175,1)';
-      cr.style.transition = 'transform 1.3s cubic-bezier(.77,0,.175,1)';
+      cl.style.transition = 'transform 3s cubic-bezier(.77,0,.175,1)';
+      cr.style.transition = 'transform 3s cubic-bezier(.77,0,.175,1)';
 
       setTimeout(function () {
         cl.style.transform = 'translateX(-101%)';
@@ -281,8 +281,8 @@ function openCurtain(callback) {
         setTimeout(function () {
           curtain.style.display = 'none';
           if (typeof callback === 'function') callback();
-        }, 1380);
-      }, 520);
+        }, 2300);
+      }, 1000);
     });
   });
 }
