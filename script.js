@@ -243,11 +243,14 @@ window.addEventListener('focus', function () {
 
 /* ── Manual toggle button ── */
 document.getElementById('music-btn').addEventListener('click', function () {
+  var btn = document.getElementById('music-btn');
   if (isPlaying) {
-    stopMusic(true);             // user deliberately paused
+    stopMusic(true);
+    btn.setAttribute('aria-label', 'Resume music');
   } else {
     userPaused = false;
     startMusic();
+    btn.setAttribute('aria-label', 'Pause music');
   }
 });
 
@@ -287,16 +290,21 @@ function openCurtain(callback) {
 
 /* ══════════════════════════════════════════════════════
    6. ENTER FLOW
+   Music always starts on enter — the user tap satisfies
+   the browser's autoplay gesture requirement.
 ══════════════════════════════════════════════════════ */
-function doEnter(withMusic) {
+function doEnter() {
   var enterEl = document.getElementById('enter');
   enterEl.classList.add('out');
-    document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+
+  // Start music immediately on the user gesture (before animations)
+  startMusic();
 
   setTimeout(function () {
     enterEl.style.display = 'none';
 
     openCurtain(function () {
+      // Show the floating pause/resume button after entering
       document.getElementById('music-btn').style.display = 'flex';
       document.getElementById('hero-inner').classList.add('go');
 
@@ -304,16 +312,12 @@ function doEnter(withMusic) {
         var hs = document.getElementById('hero-scroll');
         if (hs) hs.classList.add('show');
       }, 1700);
-
-      if (withMusic) startMusic();
     });
 
   }, 900);
 }
 
-document.getElementById('btn-music').addEventListener('click',  function () { doEnter(true);  });
-console.log("log")
-// document.getElementById('btn-silent').addEventListener('click', function () { doEnter(false); });
+document.getElementById('btn-music').addEventListener('click', doEnter);
 
 
 /* ══════════════════════════════════════════════════════
@@ -424,7 +428,13 @@ window.addEventListener('scroll', function () {
 
 /* ── Device helpers ── */
 function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  // iPadOS 13+ deliberately reports as "Macintosh" to get the desktop site,
+  // so the old /iPad/ UA check silently fails on modern iPads.
+  // Fix: also check for a Mac UA *with* touch support (only iPads do that).
+  var ua         = navigator.userAgent;
+  var legacyIOS  = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  var modernIPad = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
+  return legacyIOS || modernIPad;
 }
 function isAndroid() {
   return /Android/.test(navigator.userAgent);
@@ -501,23 +511,32 @@ function addToCalendar(eventKey) {
   if (!ev) return;
 
   if (isIOS()) {
-    /* iOS: create a Blob and download the .ics file.
-       Safari will open it directly in the Calendar app. */
-    var icsContent = buildICS(ev);
-    var blob  = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    var url   = URL.createObjectURL(blob);
-    var link  = document.createElement('a');
-    link.href     = url;
-    link.download = ev.title.replace(/[^a-z0-9]/gi, '_') + '.ics';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    /*
+     * iOS / iPadOS — open Calendar app via data: URI
+     * ─────────────────────────────────────────────────────
+     * Why NOT Blob + link.download:
+     *   Safari saves the file to the Files app silently —
+     *   the Calendar app never opens. Known Safari limitation.
+     *
+     * Why data: URI + window.location works:
+     *   Safari recognises the text/calendar MIME type and
+     *   hands it directly to the Calendar app, showing the
+     *   "Add Event" sheet immediately. No Files app, no
+     *   download dialog. Works on iPhone and iPad (including
+     *   iPadOS 13+ which is correctly detected above).
+     */
+    var icsContent  = buildICS(ev);
+    var dataURI     = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+    window.location = dataURI;
 
   } else {
-    /* Android + Desktop: open Google Calendar in a new tab.
-       Works natively in Chrome on Android — pops right into
-       the calendar app if Google Calendar is installed. */
+    /*
+     * Android + Desktop — Google Calendar URL
+     * ─────────────────────────────────────────────────────
+     * Opens Google Calendar add-event page in a new tab.
+     * On Android Chrome, deep-links into the Calendar app
+     * automatically if Google Calendar is installed.
+     */
     window.open(buildGoogleCalURL(ev), '_blank', 'noopener');
   }
 }
